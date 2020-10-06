@@ -1,25 +1,45 @@
 package com.capg.moodanalyser.moodanalyser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MoodAnalyserTest {
+class MoodAnalyserTest {
+	public static MoodAnalyser moodanalyser;
 	@Test
-	void givenMood_WhenSad_ShouldReturnSad() {
-		MoodAnalyser mood = new MoodAnalyser("I am in sad mood");
-		String getMood = mood.analyseMood();
-		assertEquals("SAD",getMood);
+	void givenMessage_whensad_returnSadMood() {
+		MoodAnalyser moodanalyzer = new MoodAnalyser("I am in Sad Mood");
+		String testcase1 = "I am in Sad Mood";
+		try {
+			testcase1 = moodanalyzer.analyseMood();
+		} catch (MoodAnalysisException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals("SAD", testcase1);
 	}
 	@Test
-	void givenMood_WhenInAnyMood_ShouldReturnHappy() {
-		MoodAnalyser mood = new MoodAnalyser("I am in any mood");
-		String getMood = mood.analyseMood();
-		assertEquals("HAPPY",getMood);
+	void givenMessage_whenAnyMood_returnHAPPY() {
+		MoodAnalyser moodanalyzerobj1 = new MoodAnalyser("I am Happy Mood");
+		try {
+			assertEquals("HAPPY", moodanalyzerobj1.analyseMood());
+		} catch (MoodAnalysisException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Test
-	void givenMood_WhenNull_ShouldReturnHappy() {
-		MoodAnalyser mood = new MoodAnalyser(null);
-		String getMood = mood.analyseMood();
-		assertEquals("HAPPY",getMood);
+	void givenMessage_whenNull_shouldThrow_MoodAnalyserException() {
+		MoodAnalyser moodanalyzer = new MoodAnalyser(null);
+		Assertions.assertThrows(MoodAnalysisException.class, () -> {
+			moodanalyzer.analyseMood();
+		});
+	}
+	@Test
+	void givenMessage_whenEmpty_shouldThrow_MoodAnalyserException() {
+		MoodAnalyser moodanalyzer = new MoodAnalyser("");
+		Assertions.assertThrows(MoodAnalysisException.class, () -> {
+			moodanalyzer.analyseMood();
+		});
 	}
 }

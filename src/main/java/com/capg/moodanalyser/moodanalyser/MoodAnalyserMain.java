@@ -2,10 +2,9 @@ package com.capg.moodanalyser.moodanalyser;
 
 public class MoodAnalyserMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MoodAnalysisException {
 		
-		System.out.println("Hello World");
-
+		MoodAnalyser moodanalyzer = new MoodAnalyser(null);
+		System.out.println("Mood of a person is: " + moodanalyzer.analyseMood());
 	}
-
 }
