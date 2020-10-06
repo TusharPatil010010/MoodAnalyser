@@ -1,7 +1,7 @@
 package com.capg.moodanalyser.moodanalyser;
 
 public class MoodAnalyser {
-	
+	//Mood Analyser user case to return happy or sad mood
 	String message;
 	public MoodAnalyser() {
 		
